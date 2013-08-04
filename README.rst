@@ -21,10 +21,12 @@ Usage
 To integrate ``django-awesome-avatar`` with your site, there are few things
 that are required:
 
-#. ``pip install django-awesome-avatar``
+#. Installing::
+
+       ``pip install django-awesome-avatar``
 
 #. List this application in the ``INSTALLED_APPS`` portion of your settings file.
-Your settings file will look something like::
+   Your settings file will look something like::
 
         INSTALLED_APPS = (
             ...
@@ -52,7 +54,7 @@ Your settings file will look something like::
 Global Settings
 ===============
 
-``settings.py``::
+Django's ``settings.py``::
      
     AWESOME_AVATAR = {
         'width': 100,
