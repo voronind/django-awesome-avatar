@@ -3,12 +3,12 @@ from django.conf import settings
 
 
 class config(object):
-    width = 160
-    height = 160
+    width = 100
+    height = 100
 
-    save_format = 'png'
-    quality = 90
     upload_to = 'avatars'
+    save_format = 'png'
+    save_quality = 90
 
     select_area_width = 400
     select_area_height = 250

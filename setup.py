@@ -3,19 +3,14 @@ import os
 
 name = 'django-awesome-avatar'
 package = 'awesome_avatar'
-version = '1.0.1'
+version = '1.0.2'
 
 url = 'https://github.com/dimka665/django-awesome-avatar'
 author = 'Dmitry Voronin'
 author_email = 'dimka665@gmail.com'
-license = 'BSD'
+license_ = 'BSD'
 description = 'Avatar django model field'
-long_description = 'README.rst'
-# classifiers = [
-#     'Intended Audience :: Developers',
-#     'License :: OSI Approved :: BSD License',
-#     'Programming Language :: Python',
-# ]
+long_description = open('README.rst').read()
 
 
 def get_packages(package):
@@ -44,17 +39,15 @@ def get_package_data(package):
 
 setup(
     name=name,
-    # version=get_version(package),
     version=version,
     url=url,
-    license=license,
+    license=license_,
     description=description,
+    long_description=long_description,
     author=author,
     author_email=author_email,
     packages=get_packages(package),
     package_data=get_package_data(package),
-    # install_requires=install_requires,
-    # classifiers=classifiers,
 )
 
 

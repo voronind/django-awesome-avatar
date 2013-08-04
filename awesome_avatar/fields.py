@@ -1,3 +1,4 @@
+import os
 from awesome_avatar.settings import config
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
@@ -17,8 +18,8 @@ except ImportError:
 class AvatarField(models.ImageField):
     def __init__(self, *args, **kwargs):
 
-        self.width = kwargs.pop('width', None)
-        self.height = kwargs.pop('height', None)
+        self.width = kwargs.pop('width', config.width)
+        self.height = kwargs.pop('height', config.height)
 
         kwargs['upload_to'] = kwargs.get('upload_to', config.upload_to)
 
@@ -35,16 +36,14 @@ class AvatarField(models.ImageField):
         if file_:
 
             image = Image.open(StringIO(file_.read()))
-
-            # ratio_x = max(1, float(image.size[0]) / config.select_area_width)
-            # ratio_y = max(1, float(image.size[1]) / config.select_area_height)
-
             image = image.crop(data['box'])
-            image = image.resize((config.width, config.height), Image.ANTIALIAS)
+            image = image.resize((self.width, self.height), Image.ANTIALIAS)
 
             content = StringIO()
-            image.save(content, config.save_format, quality=config.quality)
+            image.save(content, config.save_format, quality=config.save_quality)
+
+            file_name = '{}.{}'.format(os.path.splitext(file_.name)[0], config.save_format)
 
             # new_data = SimpleUploadedFile(file.name, content.getvalue(), content_type='image/' + config.save_format)
-            new_data = InMemoryUploadedFile(content, None, file_.name, 'image/' + config.save_format, len(content.getvalue()), None)
+            new_data = InMemoryUploadedFile(content, None, file_name, 'image/' + config.save_format, len(content.getvalue()), None)
             super(AvatarField, self).save_form_data(instance, new_data)
