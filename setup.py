@@ -1,13 +1,12 @@
 # coding: utf8
 
 from setuptools import setup
-# import re
 import os
-# import sys
-
 
 name = 'django-awesome-avatar'
 package = 'awesome_avatar'
+version = '1.0'
+
 description = 'Avatar django model field'
 url = 'https://github.com/dimka665/django-awesome-avatar'
 author = 'Dmitry Voronin'
@@ -47,7 +46,7 @@ def get_package_data(package):
 setup(
     name=name,
     # version=get_version(package),
-    version='0.9',
+    version=version,
     url=url,
     license=license,
     description=description,
