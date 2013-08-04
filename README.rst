@@ -25,11 +25,12 @@ that are required:
 #. ``pip install django-awesome-avatar``
 
 #. List this application in the ``INSTALLED_APPS`` portion of your settings file.
-   Your settings file will look something like::
-    INSTALLED_APPS = (
-        ...
-        'awesome_avatar',
-    )
+Your settings file will look something like::
+
+        INSTALLED_APPS = (
+            ...
+            'awesome_avatar',
+        )
 
 #.  Add the ``AvatarField`` to your profile model::
         
