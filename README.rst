@@ -23,7 +23,7 @@ that are required:
 
 #. Installing::
 
-       ``pip install django-awesome-avatar``
+       pip install django-awesome-avatar
 
 #. List this application in the ``INSTALLED_APPS`` portion of your settings file.
    Your settings file will look something like::
