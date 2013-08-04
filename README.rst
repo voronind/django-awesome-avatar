@@ -12,14 +12,13 @@ Purpose
 | django-awesome-avatar_ uses:
 
 - field in profile model instead creating model for saving images
-- HTML FileAPI instead hidden iframe ajax for image preview
+- HTML5 File API instead hidden iframe AJAX for image preview
 - easy customizable presence (any view and widget templates)
-
 
 Usage
 =====
 
-To integrate `django-awesome-avatar` with your site, there are few things
+To integrate ``django-awesome-avatar`` with your site, there are few things
 that are required:
 
 #. ``pip install django-awesome-avatar``
