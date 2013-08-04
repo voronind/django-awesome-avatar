@@ -1,22 +1,21 @@
-# coding: utf8
-
 from setuptools import setup
 import os
 
 name = 'django-awesome-avatar'
 package = 'awesome_avatar'
-version = '1.0'
+version = '1.0.1'
 
-description = 'Avatar django model field'
 url = 'https://github.com/dimka665/django-awesome-avatar'
 author = 'Dmitry Voronin'
 author_email = 'dimka665@gmail.com'
 license = 'BSD'
-classifiers = [
-    'Intended Audience :: Developers',
-    'License :: OSI Approved :: BSD License',
-    'Programming Language :: Python',
-]
+description = 'Avatar django model field'
+long_description = 'README.rst'
+# classifiers = [
+#     'Intended Audience :: Developers',
+#     'License :: OSI Approved :: BSD License',
+#     'Programming Language :: Python',
+# ]
 
 
 def get_packages(package):
@@ -55,7 +54,7 @@ setup(
     packages=get_packages(package),
     package_data=get_package_data(package),
     # install_requires=install_requires,
-    classifiers=classifiers,
+    # classifiers=classifiers,
 )
 
 
