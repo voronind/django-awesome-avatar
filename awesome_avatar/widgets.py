@@ -34,6 +34,10 @@ class AvatarWidget(FileInput):
         return value
 
     def render(self, name, value, attrs=None):
+
+        config.height = self.attrs['height']
+        config.width = self.attrs['width']
+
         context = {}
         context['name'] = name
         context['config'] = config

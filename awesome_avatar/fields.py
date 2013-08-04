@@ -27,6 +27,8 @@ class AvatarField(models.ImageField):
 
     def formfield(self, **kwargs):
         defaults = {'form_class': forms.AvatarField}
+        defaults['width'] = self.width
+        defaults['height'] = self.height
         defaults.update(kwargs)
         return super(AvatarField, self).formfield(**defaults)
 

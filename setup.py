@@ -3,13 +3,13 @@ import os
 
 name = 'django-awesome-avatar'
 package = 'awesome_avatar'
-version = '1.0.6'
+version = '1.1'
 
 url = 'https://github.com/dimka665/django-awesome-avatar'
 author = 'Dmitry Voronin'
 author_email = 'dimka665@gmail.com'
 license_ = 'BSD'
-description = 'Avatar django model field'
+description = 'Django Avatar field'
 long_description = open('README.rst').read()
 
 

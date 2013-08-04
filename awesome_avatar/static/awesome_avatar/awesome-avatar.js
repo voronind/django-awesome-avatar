@@ -80,10 +80,10 @@ function bind_preview(selector, config, e) {
 
         $(this).imgAreaSelect({
 //            handles: true,
-            aspectRatio: "1:1",
+            aspectRatio: config.width + ":" + config.height,
             fadeSpeed: 100,
-            minHeight: 50,
-            minWidth: 50,
+//            minHeight: 50,
+//            minWidth: 50,
             x1: sel.x1,
             y1: sel.y1,
             x2: sel.x2,
