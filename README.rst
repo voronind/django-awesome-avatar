@@ -42,8 +42,9 @@ that are required:
             ...
             avatar = AvatarField(upload_to='avatars', width=100, height=100)
 
-#.  Use in view.
-    `views.py`::
+#.  Use in view  
+    
+    - with ModelForm::
     
         class AvatarChangeForm(ModelForm):
             class Meta:
@@ -52,14 +53,39 @@ that are required:
         
         def change_avatar(request):
             if request.method == 'POST':
-                form = AvatarChangeForm(request.POST, request.FILES, instance=request.user.profile)
+                form = AvatarChangeForm(request.POST, request.FILES,
+                                        instance=request.user.profile)
                 if form.is_valid():
                     form.save()
                     return HttpResponseRedirect('/profile/')
             else:
-                form = AvatarChangeForm(instance=request.user.profile})
+                form = AvatarChangeForm(instance=request.user.profile)
 
             return render(request, 'template.html', {'form': form})
+            
+    - with Form::
+    
+        ...
+        from awesome_avatar import avatar_forms
+        
+        class Images(Model):
+            image = ImageField(upload_to='images')
+      
+        class UploadAndCropImageForm(Form):
+            image = avatar_forms.AvatarField()
+ 
+        def upload_and_crop_image(request):
+            if request.method == 'POST':
+                form = UploadAndCropImageForm(request.POST)
+                
+                if form.is_valid():
+                    Images(image=form.image).save()
+                    return HttpResponseRedirect('/any/')
+            else:
+                form = UploadAndCropImageForm()
+
+            return render(request, 'template.html', {'form': form})
+            
         
 Global Settings
 ===============
