@@ -33,23 +33,33 @@ that are required:
             'awesome_avatar',
         )
 
-#.  Add the ``AvatarField`` to your profile model::
+#.  Add the ``AvatarField`` to your user or profile model::
         
         from awesome_avatar.fields import AvatarField
         
         class Profile(Model):
+            user = OneToOneField(User, related_name='profile')
             ...
             avatar = AvatarField(upload_to='avatars', width=100, height=100)
 
-#.  And for example, use in ModelForm::
+#.  Use in view.
+    `views.py`::
     
         class AvatarChangeForm(ModelForm):
             class Meta:
                 model = Profile
                 fields = ['avatar']
         
-        ...
-        return render(request, template, {'form': AvatarChangeForm})
+        def change_avatar(request):
+            if request.method == 'POST':
+                form = AvatarChangeForm(request.POST, request.FILES, instance=request.user.profile)
+                if form.is_valid():
+                    form.save()
+                    return HttpResponseRedirect('/profile/')
+            else:
+                form = AvatarChangeForm(instance=request.user.profile})
+
+            return render(request, 'template.html', {'form': form})
         
 Global Settings
 ===============
