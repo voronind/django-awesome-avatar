@@ -15,8 +15,8 @@ Purpose
 - HTML5 File API instead hidden iframe AJAX for image preview
 - easy customizable presence (any view and widget templates)
 
-Usage
-=====
+Install
+=======
 
 To integrate ``django-awesome-avatar`` with your site, there are few things
 that are required:
@@ -33,58 +33,66 @@ that are required:
             'awesome_avatar',
         )
 
-#.  Add the ``AvatarField`` to your user or profile model::
-        
-        from awesome_avatar.fields import AvatarField
-        
-        class Profile(Model):
-            user = OneToOneField(User, related_name='profile')
-            ...
-            avatar = AvatarField(upload_to='avatars', width=100, height=100)
+Usage examples
+==============
 
-#.  Use in view  
-    
-    - with ModelForm::
-    
-        class AvatarChangeForm(ModelForm):
-            class Meta:
-                model = Profile
-                fields = ['avatar']
-        
-        def change_avatar(request):
-            if request.method == 'POST':
-                form = AvatarChangeForm(request.POST, request.FILES,
-                                        instance=request.user.profile)
-                if form.is_valid():
-                    form.save()
-                    return HttpResponseRedirect('/profile/')
-            else:
-                form = AvatarChangeForm(instance=request.user.profile)
+with ModelForm
+--------------
 
-            return render(request, 'template.html', {'form': form})
-            
-    - with Form::
-    
-        ...
-        from awesome_avatar import avatar_forms
+Add the ``AvatarField`` to your user or profile model::
         
-        class Images(Model):
-            image = ImageField(upload_to='images')
-      
-        class UploadAndCropImageForm(Form):
-            image = avatar_forms.AvatarField()
+    from awesome_avatar.fields import AvatarField
  
-        def upload_and_crop_image(request):
-            if request.method == 'POST':
-                form = UploadAndCropImageForm(request.POST)
-                
-                if form.is_valid():
-                    Images(image=form.image).save()
-                    return HttpResponseRedirect('/any/')
-            else:
-                form = UploadAndCropImageForm()
+    class Profile(Model):
+        user = OneToOneField(User, related_name='profile')
+        ...
+        avatar = AvatarField(upload_to='avatars', width=100, height=100)
 
-            return render(request, 'template.html', {'form': form})
+Use model form usually way::
+
+    class AvatarChangeForm(ModelForm):
+        class Meta:
+            model = Profile
+            fields = ['avatar']
+        
+    def change_avatar(request):
+        if request.method == 'POST':
+            form = AvatarChangeForm(request.POST, request.FILES,
+                                    instance=request.user.profile)
+            if form.is_valid():
+                form.save()
+                return HttpResponseRedirect('/profile/')
+        else:
+            form = AvatarChangeForm(instance=request.user.profile)
+
+        return render(request, 'template.html', {'form': form})
+            
+with Form
+---------
+
+Define some model for saving images::
+    
+    class Images(Model):
+        image = ImageField(upload_to='images')
+            
+Use form field for cropping image::
+
+    from awesome_avatar import forms as avatar_forms
+
+    class UploadAndCropImageForm(Form):
+        image = avatar_forms.AvatarField()
+ 
+    def upload_and_crop_image(request):
+        if request.method == 'POST':
+            form = UploadAndCropImageForm(request.POST)
+                
+            if form.is_valid():
+                Images(image=form.image).save()
+                return HttpResponseRedirect('/any/')
+        else:
+            form = UploadAndCropImageForm()
+
+        return render(request, 'template.html', {'form': form})
             
         
 Global Settings
