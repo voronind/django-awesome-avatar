@@ -63,6 +63,8 @@ function bind_preview(selector, config, e) {
                 $(this).css('height', config.select_area_height + 'px');
                 $(selector + '-ratio').val(ratio_y);
             }
+        } else {
+            $(selector + '-ratio').val(1);
         }
 
         img_width = $(this).width();
