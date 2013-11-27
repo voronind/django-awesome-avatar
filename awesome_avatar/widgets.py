@@ -15,7 +15,7 @@ class AvatarWidget(FileInput):
         y1 = data.get(name + '-y1', 0)
         x2 = data.get(name + '-x2', x1)
         y2 = data.get(name + '-y2', y1)
-        ratio = float(data.get(name + '-ratio'))
+        ratio = float(data.get(name + '-ratio', 1))
 
         box_raw = [x1, y1, x2, y2]
         box = []
