@@ -14,6 +14,12 @@ try:
 except ImportError:
     import Image
 
+try:
+    from south.modelsinspector import add_introspection_rules
+    add_introspection_rules([], ['^awesome_avatar\.fields\.AvatarField'])
+except ImportError:
+    pass
+
 
 class AvatarField(models.ImageField):
     def __init__(self, *args, **kwargs):
