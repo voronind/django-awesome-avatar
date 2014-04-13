@@ -1,4 +1,5 @@
-function bind_on_change_input_file(selector, config) {
+(function($){
+bind_on_change_input_file = function(selector, config) {
 
     $(selector).change(function() {
         if($(this).val() == '') {
@@ -32,9 +33,9 @@ function bind_on_change_input_file(selector, config) {
         reader.onload = bind_preview.bind(null, selector, config);
         reader.readAsDataURL(file);
     });
-}
+};
 
-function bind_preview(selector, config, e) {
+bind_preview = function(selector, config, e) {
     var image_data = e.target.result;
 //    $(selector + '-preview').empty();
 //    $(selector + '-preview').append('<img />');
@@ -95,9 +96,9 @@ function bind_preview(selector, config, e) {
 
         update_coors(selector, config, {'width': img_width}, sel);
     })();
-}
+};
 
-function update_coors(selector, config, img, selection) {
+update_coors = function(selector, config, img, selection) {
     $(selector + "-x1").val(selection.x1);
     $(selector + "-y1").val(selection.y1);
     $(selector + "-x2").val(selection.x2);
@@ -114,5 +115,5 @@ function update_coors(selector, config, img, selection) {
             marginTop: '-' + Math.round(ratiox * selection.y1) + 'px'
         });
     }
-}
-
+};
+})(typeof(jQuery) != 'undefined' ? jQuery : django.jQuery);

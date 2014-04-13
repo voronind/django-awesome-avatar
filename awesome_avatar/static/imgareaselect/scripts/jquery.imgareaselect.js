@@ -727,4 +727,4 @@ $.fn.imgAreaSelect = function (options) {
     return this;
 };
 
-})(jQuery);
+})(typeof(jQuery) != 'undefined' ? jQuery : django.jQuery);
